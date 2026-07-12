@@ -2,8 +2,10 @@ import React ,{useState,useEffect} from "react";
 
 function Home() {
     const [subject,setsubject]=useState("beauty")
-    const [quotes,setquotes]=useState("")
-    
+    const [quotes,setquotes]=useState([])
+    const [author,setautor]=useState("")
+    const [target_quotes,settarget]=useState([])
+
 
     const categories = [
   { value: "beauty", label: "جمال" },
@@ -26,14 +28,20 @@ function Home() {
     ()=>{
         import(`./short-quotes-master/short-quotes-master/ar/${subject}.json`)
         .then(data => {
-            const das=data.default
-            setquotes(data.default))
-        }
+            const info=data.default;
+            setquotes(info)
+        });
             
     }
         ,[subject]
     )
-
+    useEffect(()=>{
+         const target=quotes.filter((quote)=> quote.author==author)
+         settarget(target)
+    }
+        ,[author]
+    )
+    
 
     return (
         <div className="Home">
@@ -45,10 +53,17 @@ function Home() {
                     )}
             </select>
            
-           <select  id="author">
-                
+           <select  id="author" onChange={(a)=>{setautor(a.target.value)}}>
+                <option value="">اختر المؤلف</option>
+                {quotes.map((auth)=>(
+                    <option key={auth.author} value={auth.author}>{auth.author}</option>
+                ))}
            </select>
-           
+           <div >
+                {target_quotes.map((quot)=>(
+                    <p key={quot.author}>{quot.text}</p>
+                ))}
+           </div>
 
         </div>
     )
