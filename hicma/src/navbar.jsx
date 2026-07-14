@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <nav>
-        <Link to="/">Home</Link>
-        
+        <Link to="/" className="link">الرئيسية</Link>
+        <Link to="/random_quotes" className="link">مختارات الأقوال</Link>
     </nav>
   );
 }

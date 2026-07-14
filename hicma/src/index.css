@@ -3,9 +3,14 @@ body{
   padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  background: url("./picture/Untitled.jpeg") center center/ cover no-repeat ;
+  
+
 }
+
+
 select{
   width: 400px;
   height: 30px;
@@ -14,9 +19,65 @@ select{
   margin: 30px;
   text-align: center;
   font-size: 20px;
+  background-color: rgba(1, 4, 7, 0.158);
 }
 .Home {
+  padding-top:30px ;
   display: flex;
   flex-direction: column;
   
+}
+.Home{
+  width:100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 70px;
+  width: 100vw;
+  
+}
+.link{
+  font-size: 23px;
+  margin: 40px;
+  text-decoration:none;
+  color: black;
+  padding: 10px;
+  
+}
+.link:hover{
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.quotes {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 90%;
+  margin: 10px;
+  box-shadow:2px 2px 10px 2px;
+}
+
+.quotes h3{ 
+  line-height: 1.5;
+}
+
+.continer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

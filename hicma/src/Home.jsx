@@ -1,11 +1,19 @@
-import React ,{useState,useEffect} from "react";
+import React ,{useState,useEffect,useContext} from "react";
+import { target_subject } from "./App";
+import { Link } from "react-router-dom";
+
+
 
 function Home() {
-    const [subject,setsubject]=useState("beauty")
+    const {subject,setsubject}=useContext(target_subject)
     const [quotes,setquotes]=useState([])
     const [author,setautor]=useState("")
     const [target_quotes,settarget]=useState([])
 
+    document.body.style.height="100vh"
+    
+    
+    
 
     const categories = [
   { value: "beauty", label: "جمال" },
@@ -24,27 +32,12 @@ function Home() {
   { value: "success", label: "نجاح" },
   { value: "travel", label: "سفر" },
 ];
-    useEffect(
-    ()=>{
-        import(`./short-quotes-master/short-quotes-master/ar/${subject}.json`)
-        .then(data => {
-            const info=data.default;
-            setquotes(info)
-        });
-            
-    }
-        ,[subject]
-    )
-    useEffect(()=>{
-         const target=quotes.filter((quote)=> quote.author==author)
-         settarget(target)
-    }
-        ,[author]
-    )
+    
     
 
     return (
         <div className="Home">
+            <h1>اختر موضوعا</h1>
             <select  id="subject" onChange={(e)=>{setsubject(e.target.value)}}>{categories.map((cat) => (
                     
                     <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -53,17 +46,14 @@ function Home() {
                     )}
             </select>
            
-           <select  id="author" onChange={(a)=>{setautor(a.target.value)}}>
-                <option value="">اختر المؤلف</option>
-                {quotes.map((auth)=>(
-                    <option key={auth.author} value={auth.author}>{auth.author}</option>
-                ))}
-           </select>
+           
            <div >
                 {target_quotes.map((quot)=>(
                     <p key={quot.author}>{quot.text}</p>
                 ))}
            </div>
+            <Link to="/display" className="link">ابحث</Link>
+        
 
         </div>
     )
