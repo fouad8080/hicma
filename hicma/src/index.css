@@ -1,3 +1,7 @@
+:root{
+  main-font:"Amiri"
+}
+
 body{
   margin:0;
   padding: 0;
@@ -6,11 +10,14 @@ body{
   justify-content: space-between;
   align-items: center;
   background: url("./picture/Untitled.jpeg") center center/ cover no-repeat ;
-  
+  font-family: var(--main-font),sans-serif;
 
 }
 
-
+#fonts{
+  width: 50%;
+  
+}
 select{
   width: 400px;
   height: 30px;
@@ -21,13 +28,9 @@ select{
   font-size: 20px;
   background-color: rgba(1, 4, 7, 0.158);
 }
-.Home {
-  padding-top:30px ;
-  display: flex;
-  flex-direction: column;
-  
-}
+
 .Home{
+  padding-top:30px ;
   width:100vw;
   height: 80vh;
   display: flex;
@@ -81,3 +84,18 @@ nav {
   justify-content: center;
   align-items: center;
 }
+option{
+  background-color: rgba(240, 248, 255, 0);
+}
+
+@media (min-width:1000px) {
+  .display{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+
+
+

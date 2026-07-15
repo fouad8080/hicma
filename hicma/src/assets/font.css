@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Amiri";
+  src: url("./fonts/Amiri/Amiri_Regular.ttf");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rakkas";
+  src: url("./fonts/Rakkas/Rakkas_Regular.ttf");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Reem Kufi";
+  src: url("./fonts/Reem_Kufi/ReemKufi.ttf");
+  font-weight: normal;
+  font-display: swap;
+}

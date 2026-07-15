@@ -22,7 +22,7 @@ function display() {
     
     console.log(quotes)
     
-    return(<div className="continer">
+    return(<div className="continer display">
         {quotes.map((quote,index)=>(
             <div key={index} className="quotes">
                 <h3>{quote.text}</h3>
