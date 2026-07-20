@@ -7,18 +7,14 @@ function display() {
     
     document.body.style.height="auto"
 
-    useEffect(
-        ()=>{
-            import(`./short-quotes-master/short-quotes-master/ar/${subject.subject}.json`)
-            .then(data => {
-                const info=data.default;
-                setquotes(info)
-            });
-                
-        }
-            ,[subject.subject]
-        )
+    useEffect(()=>{
+        let ind=Math.floor(Math.random()*500 ) +1
+        
+        let filteredQuotes = Quotes.filter((quote) => quote.category === subject.subject);
 
+        
+        setquotes(filteredQuotes);
+    },[subject.subject])
     
     console.log(quotes)
     

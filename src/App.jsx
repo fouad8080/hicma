@@ -6,46 +6,43 @@ import  Home from "./Home.jsx";
 import Display from "./display.jsx";
 import Navbar from "./navbar.jsx";
 import Random_quotes from "./random_quote.jsx";
+import Paramiter from "./paramiter.jsx";
+import Faverit from "./faverit.jsx";
 
 export const target_subject=createContext()
 
 
 function App() {
   const [subject,setsubject]=useState("beauty")
-  const [info,setinfo]=useState([])
+  
+  const [font_size,setfont_size]=useState(()=> localStorage.getItem('selectedfontsize') ||"27px")
 
-  const fonts = [
-    { value: "Amiri", family:"اميري"},
-    { value: "Rakkas", family: "راكاس" },
-    { value: "Reem Kufi", family: "كوفي" }
-  ]
-  const [font,setfont]=useState(fonts[0].value)
+  const [font,setfont]=useState(()=>localStorage.getItem('selectedfont') || "Amiri")
+  
+  const [showparamiter,setshowparamiter]=useState(false)
 
+  
+  
   useEffect(
     ()=>{
       document.documentElement.style.fontFamily=font
     }
     ,[font]
-  )
-
+    )
 
   return (
     <BrowserRouter>
-    <target_subject.Provider value={{subject,setsubject,info,setinfo}}>
-      <Navbar />
-      <div className="continer">
-      <select id="fonts" style={{fontFamily:font}} value={setfont} onChange={(e) => setfont(e.target.value)} >
-        {fonts.map((targetfont)=>(
-          <option key={targetfont.value} value={targetfont.value} style={{fontFamily:targetfont.value}}>{targetfont.family}</option>
-        ))}
-      </select>
-        </div>
-        
+    <target_subject.Provider value={{subject,setsubject,showparamiter,setshowparamiter,font_size,setfont_size,font,setfont}}>
+      <Navbar  value={{showparamiter,setshowparamiter}} font={font}/>
+      {showparamiter && (
+        <Paramiter font_size={{font_size,setfont_size}} font={{font,setfont}} />
+      )}
       <Routes>
         
-          <Route path="/" element={<Home setsubject={setsubject}/>} />
+          <Route path="/" element={<Home setsubject={setsubject} font={font} font_size={font_size}/>} />
           <Route path="/display" element={<Display subject={subject}/>} />
-          <Route path="/random_quotes" element={<Random_quotes />} />
+          <Route path="/random_quotes" element={<Random_quotes font_size={font_size}/>} />
+          <Route path="/faverit" element={<Faverit />} />
         
       </Routes>
       </target_subject.Provider>

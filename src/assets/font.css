@@ -16,3 +16,9 @@
   font-weight: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Aref Ruqaa";
+  src: url("./fonts/Aref_Ruqaa/ArefRuqaa-Regular.ttf");
+  font-weight: normal;
+  font-display: swap;
+}
