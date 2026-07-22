@@ -2,6 +2,7 @@ import Quotes from "/src/short-quotes-master/short-quotes-master/quotes.json"
 import { useEffect, useState ,useContext} from "react"
 import Aos from "aos";
 import 'aos/dist/aos.css';
+import { Addtofaverit } from "./faverit";
 
 import{ target_subject} from "./App"
 
@@ -14,14 +15,20 @@ function Random_quotes(){
         setTimeout(() => setCopySuccess(false), 2000);
     }
 
-    document.body.style.height="auto"
+    
     const [getpublish,setgetpublish]=useState([])
     
     const [getquote,setgetquote]=useState([])
     let [number,setnember]=useState(0)
     const {font_size} =useContext(target_subject)
 
-
+    const [issaved,setissaved]=useState(false)
+        
+    
+        function handelclick(quote){
+            Addtofaverit(quote);
+            setissaved(!issaved)
+        }
 
     useEffect(() => {
         Aos.init({
@@ -51,14 +58,24 @@ function Random_quotes(){
     )
 
     return(<div className="continer display">
-        {getquote.map((quote,index)=>(
-            <div key={index} className="quotes" data-aos="fade-up" style={{fontSize:font_size}}>
-                <button className="copy" onClick={()=>{copyquote(quote)}}><p>نسخ</p></button>
-                
-                 <h3 >{quote?.text}</h3>
-                <p> {quote?.author}</p>
-            </div>
-        ))}
+        {getquote.map((quote, index) => {
+  const saved = JSON.parse(localStorage.getItem('quotesid')) || [];
+  const isThisSaved = saved.includes(quote.index);
+
+  return (
+    <div key={index} className="quotes">
+        <div className="choices">
+                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> <p>نسخ</p> </button>
+                    <button className="copy" onClick={() => handelclick(quote)}>
+                                {isThisSaved ? "تم الحفظ" : "حفظ"}
+                    </button>
+        </div>
+      
+      <h3>{quote?.text}</h3>
+      <p>{quote?.author}</p>
+    </div>
+  );
+})}
        
         
         </div>

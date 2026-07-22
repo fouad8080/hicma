@@ -1,6 +1,7 @@
 import React ,{useState,useEffect,useContext} from "react";
 import { target_subject } from "./App";
 import { Link } from "react-router-dom";
+import { Addtofaverit } from "./faverit";
 
 import Quotes from "/src/short-quotes-master/short-quotes-master/quotes.json"
 
@@ -11,6 +12,27 @@ function Home() {
     const [author,setautor]=useState("")
     const [target_quotes,settarget]=useState([])
     const [dailyquote,setdaily]=useState([])
+
+    const [copySuccess, setCopySuccess] = useState(false);
+    async function copyquote(quote){
+        const quoteText = `"${quote.text}" \n— "${quote.author}"`;
+        await navigator.clipboard.writeText(quoteText);
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 2000);
+    }
+
+    const [issaved,setissaved]=useState(false)
+    useEffect(
+        ()=>{
+        const saved=JSON.parse(localStorage.getItem('quotesid')) || []
+        setissaved(saved.includes(dailyquote.index)) 
+    },[dailyquote]
+    )
+
+    function handelclick(quote){
+        Addtofaverit(quote);
+        setissaved(!issaved)
+    }
 
     
     useEffect(      
@@ -66,6 +88,10 @@ function Home() {
             <Link to="/display" className="link search">ابحث</Link>
             <h1>حكمة لك</h1>
             <div className="quotes" style={{fontSize:"30px"}}>
+                <div className="choices">
+                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> <p>نسخ</p> </button>
+                    <button className="copy" onClick={()=>handelclick(dailyquote)}> <p>{issaved ? "تم الحفظ" : "حفظ"}</p> </button>
+                </div>
                 <h3>{dailyquote.text}</h3>
                 <p>{dailyquote.author}</p>
             </div>
