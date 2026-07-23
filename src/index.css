@@ -127,23 +127,33 @@ nav {
 }
 .quotes:hover{
   transform: translateY(-8px) scale(1.05) ;
-    
-  };
+  }
   
 .choices{
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
-  background-color: rgb(133, 19, 19);
+  
 }
+.choices button{
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+.choices button:hover{
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 10px 2px;
+  border: 2px solid rgba(0, 0, 0, 0.822);
+}
+
 .quotes h3{ 
   line-height: 1.5;
 }
-.copy{
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  cursor: pointer;
-}
+
 
 
 .continer{
