@@ -89,8 +89,8 @@ function Home() {
             <h1>حكمة لك</h1>
             <div className="quotes" style={{fontSize:"30px"}}>
                 <div className="choices">
-                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> <p>نسخ</p> </button>
-                    <button className="copy" onClick={()=>handelclick(dailyquote)}> <p>{issaved ? "تم الحفظ" : "حفظ"}</p> </button>
+                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> نسخ </button>
+                    <button className="copy" onClick={()=>handelclick(dailyquote)}>{issaved ? "تم الحفظ" : "حفظ"}</button>
                 </div>
                 <h3>{dailyquote.text}</h3>
                 <p>{dailyquote.author}</p>

@@ -41,9 +41,9 @@ function display() {
   const isThisSaved = saved.includes(quote.index);
 
   return (
-    <div key={index} className="quotes">
+    <div key={index} className="quotes" data-aos="fade-up" style={{fontSize:font_size}} >
       <div className="choices">
-                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> <p>نسخ</p> </button>
+                    <button className="copy" onClick={()=>{copyquote(dailyquote)}}> نسخ </button>
                     <button className="copy" onClick={() => handelclick(quote)}>
                                 {isThisSaved ? "تم الحفظ" : "حفظ"}
                     </button>
